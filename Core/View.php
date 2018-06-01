@@ -6,7 +6,7 @@
  * Time: 17:43
  */
 
-namespace Feather\Base;
+namespace Feather\Core;
 defined('VIEW_PATH') or define('VIEW_PATH', str_replace("\\", '/',APP_PATH) . '/Views/');
 
 class View

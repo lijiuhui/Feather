@@ -6,10 +6,9 @@
  * Time: 17:29
  */
 
-namespace Feather\Base;
-use Feather\BaseInterface\IAction;
+namespace Feather\Core;
 
-class Action implements IAction
+abstract class Action
 {
     protected $_view;
     public function __construct()
@@ -17,9 +16,7 @@ class Action implements IAction
         $this->_view = new View();
     }
 
-    public function process()
-    {
-    }
+    abstract public function process();
 
     public function assign($name, $value)
     {
