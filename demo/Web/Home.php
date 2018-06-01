@@ -7,7 +7,7 @@
  */
 
 namespace Web;
-use Feather\Base\Action;
+use Feather\Core\Action;
 use Components;
 
 class Home extends Action
