@@ -84,7 +84,7 @@ class Feather
 
         if($url)
         {
-            $uris = explode($url, '/');
+            $uris = explode('/', $url);
 
             // 去除为空的元素
             $uris = array_filter($uris);
