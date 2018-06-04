@@ -99,4 +99,9 @@ class RequestData
     {
         $this->servers[$key] = $value;
     }
+
+    public function get_payloads() : array
+    {
+        return $this->payloads;
+    }
 }

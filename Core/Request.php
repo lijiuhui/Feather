@@ -24,6 +24,11 @@ class Request
         $this->init();
     }
 
+    public function payloads() : array
+    {
+        return $this->data->get_payloads();
+    }
+
     public function assign(string $name, $data)
     {
         $this->view->assign($name, $data);
