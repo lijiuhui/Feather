@@ -75,7 +75,6 @@ class Feather
     {
         $module_name = $this->config['defaultModule'];
         $action_name = $this->config['defaultAction'];
-        $param = array();
         $url = $_SERVER['REQUEST_URI'];
 
         // 清除 ? 之后的数据
@@ -93,7 +92,6 @@ class Feather
             $module_name = ucfirst($uris[0]);
 
             array_shift($uris);
-            $param = $uris ? $uris : array();
         }
 
         $action = $module_name . '\\' . $action_name;
