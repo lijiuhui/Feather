@@ -16,7 +16,7 @@ abstract class Action
         $this->_view = new View();
     }
 
-    abstract public function process();
+    abstract public function process(Request $request);
 
     public function assign($name, $value)
     {
