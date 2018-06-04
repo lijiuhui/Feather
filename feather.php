@@ -8,6 +8,8 @@
 
 namespace Feather;
 
+use Feather\Core\Request;
+
 defined('CORE_PATH') or define('CORE_PATH', __DIR__);
 
 
@@ -100,10 +102,12 @@ class Feather
             exit($action . '不存在');
         }
 
+        // 实例化Request
+        $request = new Request();
         // 实例化具体action
         $dispatch = new $action();
 
         // 调用process处理方法
-        call_user_func_array(array($dispatch, 'process'), $param);
+        call_user_func_array(array($dispatch, 'process'), array($request));
     }
 }
