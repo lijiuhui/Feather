@@ -90,6 +90,7 @@ class Feather
             // 去除为空的元素
             $uris = array_filter($uris);
             $module_name = ucfirst($uris[0]);
+            $action_name = ucfirst($uris[1]);
 
             array_shift($uris);
         }
