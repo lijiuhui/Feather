@@ -24,6 +24,17 @@ class Request
         $this->init();
     }
 
+    public function redirect(string $uri, array $params = Array(), int $status_code = 302)
+    {
+        $url = $uri . '?';
+        foreach($params as $key => $value)
+        {
+            $url = $url . $key . '=' . $value . '&';
+        }
+        $url = trim($url, '&');
+        header('Location: ' . $url, true, $status_code);
+    }
+
     public function payloads() : array
     {
         return $this->data->get_payloads();
