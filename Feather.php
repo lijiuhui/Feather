@@ -9,6 +9,7 @@
 namespace Feather;
 
 use Feather\Core\Request;
+use Feather\Core\Route;
 use Feather\Factory\DBFactory;
 use Feather\Services\Repository;
 use Feather\ServicesImpl\RepositoryImp;
@@ -117,5 +118,4 @@ class Feather
     {
         return DBFactory::instance();
     }
-
 }
