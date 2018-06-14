@@ -9,6 +9,9 @@
 namespace Feather;
 
 use Feather\Core\Request;
+use Feather\Factory\DBFactory;
+use Feather\Services\Repository;
+use Feather\ServicesImpl\RepositoryImp;
 
 defined('CORE_PATH') or define('CORE_PATH', __DIR__);
 
@@ -109,4 +112,10 @@ class Feather
         // 调用process处理方法
         call_user_func_array(array($dispatch, 'process'), array($request));
     }
+
+    public static function DB() : Repository
+    {
+        return DBFactory::instance();
+    }
+
 }
