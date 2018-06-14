@@ -23,13 +23,13 @@ class Config
 
     public function APP(string $key)
     {
-        if(!$this->exists($this->app, $key)) return FeatherConst::$EMPTY;
+        if(!$this->exists($this->app, $key)) return ConstString::$EMPTY;
         return $this->app[$key];
     }
 
     public function DB(string $key)
     {
-        if(!$this->exists($this->db, $key)) return FeatherConst::$EMPTY;
+        if(!$this->exists($this->db, $key)) return ConstString::$EMPTY;
         return $this->db[$key];
     }
 

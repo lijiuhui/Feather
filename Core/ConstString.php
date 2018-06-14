@@ -9,7 +9,7 @@
 namespace Feather\Core;
 
 
-class FeatherConst
+class ConstString
 {
     public static $EMPTY = '';
 

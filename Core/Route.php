@@ -16,8 +16,8 @@ class Route
     public static function route() : string
     {
         $config = ConfigFactory::instance();
-        $module_name = $config->APP(FeatherConst::$DEFAULT_MODULE_NAME);
-        $action_name = $config->APP(FeatherConst::$DEFAULT_ACTION_NAME);
+        $module_name = $config->APP(ConstString::$DEFAULT_MODULE_NAME);
+        $action_name = $config->APP(ConstString::$DEFAULT_ACTION_NAME);
 
         $url = Route::clear($_SERVER['REQUEST_URI']);
         if($url)

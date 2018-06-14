@@ -12,7 +12,6 @@ use Feather\Core\Request;
 use Feather\Core\Route;
 use Feather\Factory\DBFactory;
 use Feather\Services\Repository;
-use Feather\ServicesImpl\RepositoryImp;
 
 defined('CORE_PATH') or define('CORE_PATH', __DIR__);
 
@@ -29,16 +28,22 @@ class Feather
 
     public function run()
     {
-        spl_autoload_register(array($this, 'loadCoreClass'));
+        spl_autoload_register(array('Feather\Feather', 'loadCoreClass'));
         $this->setReporting();
-        $this->route();
+
+        $action_name = Route::route();
+        $action = new $action_name();
+        $request = new Request();
+
+        // 调用实例化action的处理方法
+        call_user_func(array($action, 'process'), $request);
     }
 
     /**
      * 自动加载类
      * @param $class_name
      */
-    public function loadCoreClass($class_name)
+    public static function loadCoreClass($class_name)
     {
         $file_dir = "";
         // 此类在框架中
@@ -73,45 +78,6 @@ class Feather
             ini_set('display_errors', 'Off');
             ini_set('log_errors', 'On');
         }
-    }
-
-    private function route()
-    {
-        $module_name = $this->config['defaultModule'];
-        $action_name = $this->config['defaultAction'];
-        $url = $_SERVER['REQUEST_URI'];
-
-        // 清除 ? 之后的数据
-        $position = strpos($url, '?');
-        $url = $position === false ? $url : substr($url, 0, $position);
-        // 清除首末的 /
-        $url = trim($url, '/');
-
-        if($url)
-        {
-            $uris = explode('/', $url);
-
-            // 去除为空的元素
-            $uris = array_filter($uris);
-            $module_name = ucfirst($uris[0]);
-            $action_name = ucfirst($uris[1]);
-
-            array_shift($uris);
-        }
-
-        $action = $module_name . '\\' . $action_name;
-        if(!class_exists($action))
-        {
-            exit($action . '不存在');
-        }
-
-        // 实例化Request
-        $request = new Request();
-        // 实例化具体action
-        $dispatch = new $action();
-
-        // 调用process处理方法
-        call_user_func_array(array($dispatch, 'process'), array($request));
     }
 
     public static function DB() : Repository
