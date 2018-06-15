@@ -10,8 +10,8 @@ namespace Feather;
 
 use Feather\Core\Request;
 use Feather\Core\Route;
-use Feather\Factory\DBFactory;
 use Feather\Services\Repository;
+use Feather\ServicesImpl\RepositoryImp;
 use Feather\Tools\Debug;
 
 defined('CORE_PATH') or define('CORE_PATH', __DIR__);
@@ -65,6 +65,6 @@ class Feather
 
     public static function DB() : Repository
     {
-        return DBFactory::instance();
+        return RepositoryImp::instance();
     }
 }

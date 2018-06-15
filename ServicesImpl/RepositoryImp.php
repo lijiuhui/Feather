@@ -17,10 +17,20 @@ use Exception;
 class RepositoryImp implements Repository
 {
     protected $connection = null;
+    private static $instance = null;
 
-    public function __construct()
+    protected function __construct()
     {
         $this->connection = PDOFactory::instance();
+    }
+
+    public static function instance()
+    {
+        if(is_null(self::$instance))
+        {
+            self::$instance = new static();
+        }
+        return self::$instance;
     }
 
     public function add(string $query)
