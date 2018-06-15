@@ -8,14 +8,13 @@
 
 namespace Feather\Core;
 
-
-use Feather\Factory\ConfigFactory;
+use Feather\Feather;
 
 class Route
 {
     public static function route() : string
     {
-        $config = ConfigFactory::instance();
+        $config = Feather::Config();
         $module_name = $config->APP(ConstString::$DEFAULT_MODULE_NAME);
         $action_name = $config->APP(ConstString::$DEFAULT_ACTION_NAME);
 

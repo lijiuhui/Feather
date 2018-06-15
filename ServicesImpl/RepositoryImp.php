@@ -24,7 +24,7 @@ class RepositoryImp implements Repository
         $this->connection = PDOFactory::instance();
     }
 
-    public static function instance()
+    public static function instance() : Repository
     {
         if(is_null(self::$instance))
         {

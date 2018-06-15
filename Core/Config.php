@@ -14,11 +14,21 @@ class Config
 {
     private $app = [];
     private $db = [];
+    private static $instance = null;
 
-    public function __construct()
+    protected function __construct()
     {
         $this->app = require CONF_PATH . 'main.php';
         $this->db = require CONF_PATH . 'db.php';
+    }
+
+    public static function instance() : Config
+    {
+        if(is_null(self::$instance))
+        {
+            self::$instance = new static();
+        }
+        return self::$instance;
     }
 
     public function APP(string $key)

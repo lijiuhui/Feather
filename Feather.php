@@ -8,6 +8,7 @@
 
 namespace Feather;
 
+use Feather\Core\Config;
 use Feather\Core\Request;
 use Feather\Core\Route;
 use Feather\Services\Repository;
@@ -66,5 +67,10 @@ class Feather
     public static function DB() : Repository
     {
         return RepositoryImp::instance();
+    }
+
+    public static function Config() : Config
+    {
+        return Config::instance();
     }
 }
