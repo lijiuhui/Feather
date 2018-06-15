@@ -12,25 +12,23 @@ use Feather\Core\Request;
 use Feather\Core\Route;
 use Feather\Factory\DBFactory;
 use Feather\Services\Repository;
+use Feather\Tools\Debug;
 
 defined('CORE_PATH') or define('CORE_PATH', __DIR__);
 
 
 class Feather
 {
-    // 配置项
-    protected $config = [];
-
-    public function __construct($config)
-    {
-        $this->config = $config;
-    }
-
-    public function run()
+    public static function run()
     {
         spl_autoload_register(array('Feather\Feather', 'loadCoreClass'));
-        $this->setReporting();
+        Debug::reporting();
 
+        self::route();
+    }
+
+    private static function route()
+    {
         $action_name = Route::route();
         $action = new $action_name();
         $request = new Request();
@@ -63,21 +61,6 @@ class Feather
         if(!is_file($file_dir))
             return ;
         include $file_dir;
-    }
-
-    private function setReporting()
-    {
-        if(APP_DEBUG == true)
-        {
-            error_reporting(E_ALL);
-            ini_set('display_errors', 'On');
-        }
-        else
-        {
-            error_reporting(E_ALL);
-            ini_set('display_errors', 'Off');
-            ini_set('log_errors', 'On');
-        }
     }
 
     public static function DB() : Repository
